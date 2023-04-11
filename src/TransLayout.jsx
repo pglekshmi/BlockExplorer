@@ -71,7 +71,7 @@ export default function TransLayout() {
       <p>Block Height:{block.block}</p>
       <p>Block Hash:{blockdetails.hash}</p>
       <p>Block timestamp:{timestamp}</p>
-      <p>Transactions:<Link to ="/transactions">{length}</Link> transactions</p>
+      <p>Transactions:<Link to ="/blockdetails/transactions">{length}</Link> transactions</p>
       <p>Size: {size}bytes</p>
       <p>Difficulty:{diffi} </p>
       <p>Miner: {blockdetails.miner}</p>
