@@ -3,16 +3,18 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import Highlight from "./Highlight";
 import RootLayout from "./RootLayout";
 import TransLayout from "./TransLayout";
-import Table from "./Table";
+
 import Transactions from "./Transactions";
+import Transdetails from "./Transdetails";
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<RootLayout />}>
             <Route index element={<Highlight />} />
             {/* <Route index element={<Table />} /> */}
             {/* <Route to="transactions" element={<TransLayout />}/> */}
-            <Route path="blockdetails" element={<TransLayout />} />
-            <Route to="transactions" element={<Transactions />} />
+            <Route path="blockdetails" element={<TransLayout />}/>
+            <Route path="transactions" element={<Transactions />} />
+            <Route path="transdetails" element={<Transdetails />}/>
             
         </Route>
     )
