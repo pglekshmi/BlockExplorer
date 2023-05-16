@@ -19,6 +19,7 @@ function Highlight(){
         <div>
     <div style={myStyle}>
         <h3 style={myFont} > Block Explorer for Ethereum</h3>
+    
         </div>
         <Table />
     </div>
