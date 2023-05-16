@@ -7,16 +7,22 @@ function Transdetails(props){
     const location = useLocation();
     const propsData1 = location.state;
     const [transData,setTransData] = useState([]);
-    console.log(propsData1);
+    var i=0;
+    
     useEffect(() => { TransD() }, []);
+
     
     async function TransD(){
-        const data = {
+      const tl = await propsData1.length;
+      console.log(tl);
+       
+      for(i;i<tl;i++){
+        const data = await {
             
                 "jsonrpc": "2.0",
                 "method": "eth_getTransactionByHash",
                 "params": [
-                    propsData1
+                    propsData1[i].hash
                 ],
                 "id": 1
             
@@ -29,11 +35,12 @@ function Transdetails(props){
             body: JSON.stringify(data),
           })
           transData1= await transData1.json();
+          console.log("hello")
         //   console.log(transData.result);
           setTransData(transData1);
         setIsMounted(true)
         
-    }
+    }}
     if(isMounted){
       console.log("hai");
     console.log(transData.result);

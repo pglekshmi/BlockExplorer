@@ -3,7 +3,10 @@ import { Outlet ,Link,useLocation} from "react-router-dom";
 function Transactions(props){
     const location = useLocation();
     const propsData = location.state;
-     console.log(propsData.transactions[0])
+     console.log(propsData.transactions[0].hash)
+     const para ={
+        d1:"propsData.transactions[0].hash"
+     }
     return(
         <div>
            <table>
@@ -13,7 +16,7 @@ function Transactions(props){
 
            </tr>
            <tr>
-            <td><Link to="/transdetails" state={propsData.transactions[0].hash}>{propsData.transactions[0].hash}</Link></td>
+            <td><Link to="/transdetails" state={propsData.transactions}>{propsData.transactions[0].hash}</Link></td>
            </tr>
         
            

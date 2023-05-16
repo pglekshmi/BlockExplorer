@@ -7,82 +7,89 @@ import { Link } from "react-router-dom";
 function Table() {
   const [isMounted, setIsMounted] = useState(false);
   const [block, setBlock] = useState();
-  useEffect(() => {Genis()},[]);
-    const data1 = {
-      "jsonrpc": "2.0",
-      "method": "eth_blockNumber",
-      "params": [],
-      "id": 1
-    };
-    
-    async function Genis(){
+  const blocksJSX = [];
+  const parameter = "1";
+  const data1 = {
+    "jsonrpc": "2.0",
+    "method": "eth_blockNumber",
+    "params": [],
+    "id": 1
+  };
+  useEffect(() => {Genis()}, []);
 
-    let res= await fetch("http://127.0.0.1:8545", {
+
+  async function Genis() {
+
+    let res = await fetch("http://127.0.0.1:8545", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data1),
     })
-    res =await res.json();
-      
-        await console.log(res.result)
-        const hexToDecimal = hex => parseInt(hex, 16);
-        const dec1 = await hexToDecimal(res.result);
-        await console.log(dec1);
-        // gasPrice = dec1
-        await setIsMounted(true);
-        await setBlock(dec1);
-        console.log(block);
-        
-        await console.log(isMounted);
-      
-    }
-    
-    if(isMounted){
-      console.log(block);
-  const blocksJSX = [];
-  for(var i=0;i< block;i++)
-  {
-    
-  const block1= block-i;
-   console.log(block1);
-   blocksJSX.push(
-    <tr key={block1}>
-      <td>
-        <Link to={{ pathname: "/blockdetails", state: { block: block1 } }}>
-          {block1}
-        </Link>
-      </td>
-      <td></td>
-      <td></td>
-    </tr>
-  );}
-  
-return (
-  
-  <div className="App">
-  <table>
+    res = await res.json();
 
-<tr>
-  <th>Latest Blocks</th>
-  {/* <th></th>
-    <th>Gender</th> */}
-</tr>
-<tbody>
-        {blocksJSX}
-      </tbody>
+    console.log(res.result)
+    const hexToDecimal = hex => parseInt(hex, 16);
+    const dec1 = hexToDecimal(res.result);
+    console.log(dec1);
+    // gasPrice = dec1
 
+    setBlock(dec1);
+    setIsMounted(true);
 
-
-</table>
-</div>
-
-  
-
-  
-)
   }
-}
+
+  if (isMounted) {
+    console.log("bloclccc", block);
+    for (var i = 0; i < block; i++) {
+
+      const block1 = block - i;
+      console.log("blk01", block1);
+      blocksJSX.push(block1);
+    }
+
+    console.log(blocksJSX)
+  }
+  console.log(parameter);
+
+    return (
+      
+
+      <div className="App">
+       
+         <table id="blocks" width="100%">
+           
+             <tr >Latest Blocks</tr>
+             <tr>
+              <th>Number</th>
+              <th>Timestamp</th>
+             </tr>
+             <tr>
+               <td>
+               
+                
+              { blocksJSX.length > 0 && blocksJSX.map((blk) => {
+                console.log(parameter);
+               
+                return(
+
+                 
+                 <div key={blk}> 
+                
+                {/* <Link to="blockdetails" state={parameter}>click</Link> */}
+                      {/* <Link to={{ pathname: "blockdetails", state: {parameter} }}>{blk}
+                     </Link> */}
+                     <Link to="blockdetails" state={blk}>{blk}</Link>
+                     </div> 
+                      )
+              })} 
+         </td>
+            </tr>
+          
+        </table>
+      </div>
+    )
+  }
 
 export default Table;

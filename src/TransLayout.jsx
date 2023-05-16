@@ -1,19 +1,27 @@
 import { useEffect, useState } from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
 
-export default function TransLayout() {
-  const [isMounted, setIsMounted] = useState(false);
+function TransLayout(props) {
+  console.log("hi")
+  // console.log(props);
+  // const [isMounted, setIsMounted] = useState(false);
   const location = useLocation();
-  const { block } = location.state;
+  // const { block } = location.state;
+  // console.log("hai")
+  // console.log(block);
+  const blk = location.state;
+  console.log(blk);
+  const [isMounted,setIsMounted] =useState(false);
   const [blockdetails, setblockdetails] = useState([]);
   const [transCount, settransCount] = useState();
   useEffect(() => { BlockD() }, []);
   async function BlockD() {
+   
     const data = {
       "jsonrpc": "2.0",
       "method": "eth_getBlockByNumber",
       "params": [
-        block.block,
+        blk,
         true
       ],
       "id": 1
@@ -23,7 +31,7 @@ export default function TransLayout() {
       "jsonrpc": "2.0",
       "method": "eth_getBlockTransactionCountByNumber",
       "params": [
-        block.block
+        blk
       ],
       "id": 1
     }
@@ -58,10 +66,10 @@ export default function TransLayout() {
     const transac = blockdetails.transactions[0];
   }
 
-  // const bata = blockdetails.transactions[0];
-  // const batahash = bata.hash;
-  // console.log(batahash);
-  // console.log(bata[0].hash);
+  // // const bata = blockdetails.transactions[0];
+  // // const batahash = bata.hash;
+  // // console.log(batahash);
+  // // console.log(bata[0].hash);
   console.log(transCount);
   const hexToDecimal = hex => parseInt(hex, 16);
   const timestamp = hexToDecimal(blockdetails.timestamp);
@@ -71,14 +79,14 @@ export default function TransLayout() {
   const diffi = hexToDecimal(blockdetails.difficulty);
   const gasL = hexToDecimal(blockdetails.gasLimit);
   const totDiffi = hexToDecimal(blockdetails.totalDifficulty);
-  // const length = blockdetails.transactions.length;
-  // console.log(tot);
+  // // const length = blockdetails.transactions.length;
+  // // console.log(tot);
 
 
   return (
     <div>
       <h2>Block Details</h2>
-      <p>Block Height:{block.block}</p>
+      <p>Block Height:{blk}</p>
       <p>Block Hash:{blockdetails.hash}</p>
       <p>Block timestamp:{timestamp}</p>
       <p>Transactions:<Link to="/Transactions" state={blockdetails}>{length} </Link>transactions</p>
@@ -95,9 +103,10 @@ export default function TransLayout() {
       <p>Sha3Uncles: {blockdetails.sha3Uncles}</p>
 
 
-      {/* <Link to="transactions">trr</Link> */}
+     {/* <Link to="transactions">trr</Link> */}
 
     </div>
-  )
+   )
 
 }
+export default TransLayout;

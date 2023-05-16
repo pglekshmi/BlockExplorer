@@ -12,8 +12,8 @@ function Highlight(){
                 };
     const myFont={
         color:'white',
-        paddingLeft:'190px',
-        paddingTop:'150px',
+        paddingLeft:'100px',
+        paddingTop:'50px',
     }
     return (
         <div>
