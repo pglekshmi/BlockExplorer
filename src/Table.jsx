@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 // import { Link } from "react-router-dom";
+import styles from "./style/Home.module.css";
 
 
 // import {ethers} from "ethers";
@@ -58,13 +59,18 @@ function Table() {
 
       <div className="App">
        
-         <table id="blocks" width="100%">
+         <table id="blocks" className={styles.mytable}>
+          <thead>
            
-             <tr >Latest Blocks</tr>
-             <tr>
-              <th>Number</th>
-              <th>Timestamp</th>
+             <tr >
+             <th colSpan="2" className={styles.tableheader}>Latest Blocks</th>
              </tr>
+             <tr>
+              <th >Number</th>
+              <th >Timestamp</th>
+             </tr>
+             </thead>
+             <tbody>
              <tr>
                <td>
                
@@ -85,8 +91,9 @@ function Table() {
                       )
               })} 
          </td>
+         <td></td>
             </tr>
-          
+            </tbody>
         </table>
       </div>
     )

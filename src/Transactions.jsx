@@ -16,7 +16,7 @@ function Transactions(props){
 
            </tr>
            <tr>
-            <td><Link to="/transdetails" state={propsData.transactions}>{propsData.transactions[0].hash}</Link></td>
+            <td><Link to="/transdetails" state={propsData.transactions[0].hash}>{propsData.transactions[0].hash}</Link></td>
            </tr>
         
            

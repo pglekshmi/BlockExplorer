@@ -10,7 +10,7 @@ function TransLayout(props) {
   // console.log("hai")
   // console.log(block);
   const blk = location.state;
-  console.log(blk);
+  console.log("BLoccccck",blk);
   const [isMounted,setIsMounted] =useState(false);
   const [blockdetails, setblockdetails] = useState([]);
   const [transCount, settransCount] = useState();
@@ -44,6 +44,7 @@ function TransLayout(props) {
     })
     blockData = await blockData.json();
     setblockdetails(blockData.result)
+    console.log("BDDDD",blockdetails);
 
 
     let trans = await fetch("http://127.0.0.1:8545", {
