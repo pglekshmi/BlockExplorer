@@ -63,22 +63,25 @@ function Table() {
           <thead>
            
              <tr >
-             <th colSpan="2" className={styles.tableheader}>Latest Blocks</th>
+             <th colSpan="2" >Latest Blocks</th>
              </tr>
-             <tr>
-              <th >Number</th>
-              <th >Timestamp</th>
-             </tr>
+             <tr className={styles.line}></tr>
+             
              </thead>
              <tbody>
              <tr>
-               <td>
+              <th >Block</th>
+              <th >Timestamp</th>
+             </tr>
+             
+              {  blocksJSX.map((blk) => {
                
-                
-              { blocksJSX.length > 0 && blocksJSX.map((blk) => {
-                console.log(parameter);
+                console.log("hi");
                
                 return(
+                  <tr>
+               
+                  <td>
 
                  
                  <div key={blk}> 
@@ -88,11 +91,12 @@ function Table() {
                      </Link> */}
                      <Link to="blockdetails" state={blk}>{blk}</Link>
                      </div> 
-                      )
+                      </td></tr>)
+                      
               })} 
-         </td>
-         <td></td>
-            </tr>
+         
+         
+          
             </tbody>
         </table>
       </div>

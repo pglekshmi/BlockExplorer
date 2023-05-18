@@ -6,6 +6,7 @@ import TransLayout from "./TransLayout";
 
 import Transactions from "./Transactions";
 import Transdetails from "./Transdetails";
+import ErrorPage from "./ErrorPage";
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<RootLayout />}>
@@ -15,6 +16,7 @@ const router = createBrowserRouter(
             <Route path="blockdetails" element={<TransLayout />}/>
             <Route path="transactions" element={<Transactions />} />
             <Route path="transdetails" element={<Transdetails />}/>
+            <Route path="errorpage" element={<ErrorPage />}/>
             
         </Route>
     )

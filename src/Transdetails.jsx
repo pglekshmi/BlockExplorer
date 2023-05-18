@@ -1,6 +1,7 @@
 
 import {useEffect,useState} from "react";
 import { Link, Outlet, useLocation } from "react-router-dom";
+import styles from "./style/Home.module.css";
 
 function Transdetails(props){
     const [isMounted, setIsMounted] = useState(false);
@@ -52,22 +53,24 @@ function Transdetails(props){
       const value = hexToDecimal(transData.result.value);
       const input = hexToDecimal(transData.result.input);
     return(
-        <div>
-            <p>Transactionhash:{transData.result.hash}</p>
-            <p>Block:{blockNum}</p>
-            <p>ChainID:{chainid}</p>
-            <p>From:{transData.result.from}</p>
-            <p>To:{transData.result.to}</p>
-            <p>Gas:{gas}</p>
-            <p>GasPrice:{gasPrice}  Gwei</p>
-            <p>MaxFeePerGas:{maxfee}</p>
-            <p>MaxPriorityFeePerGas : {maxpriority}</p>
-            <p>Value: {value} Ethers</p>
-            <p>v: {transData.result.v}</p>
-            <p>r: {transData.result.r}</p>
-            <p>s: {transData.result.s}</p>
-            <p>Input:</p>
+        <div> <h2>Transaction Details</h2>
+          <table className={styles.transmytable}>
+            <tr><td><p>Transactionhash:</p></td><td>{transData.result.hash}</td></tr>
+            <tr><td><p>Block:</p></td><td>{blockNum}</td></tr>
+           <tr><td><p>ChainID:</p></td><td>{chainid}</td></tr>
+            <tr><td><p>From:</p></td><td>{transData.result.from}</td></tr>
+            <tr><td><p>To:</p></td><td>{transData.result.to}</td></tr>
+            <tr><td><p>Gas:</p></td><td>{gas}</td></tr>
+            <tr><td><p>GasPrice:</p></td><td>{gasPrice}  Gwei</td></tr>
+            <tr><td><p>MaxFeePerGas:</p></td><td>{maxfee}</td></tr>
+            <tr><td><p>MaxPriorityFeePerGas :</p></td><td>{maxpriority}</td></tr> 
+            <tr><td><p>Value:</p></td><td>{value} Ethers</td></tr> 
+            <tr><td><p>v:</p></td><td>{transData.result.v}</td></tr> 
+            <tr><td><p>r: </p></td><td>{transData.result.r}</td></tr>
+            <tr><td><p>s:</p></td><td>{transData.result.s}</td></tr> 
+            <tr><td><p>Input:</p></td><td>
             <textarea id="json-text-area" rows="4" cols="50" name="input">{input}</textarea>
+            </td></tr></table>
         </div>
     );
     

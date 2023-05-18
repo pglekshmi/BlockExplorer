@@ -5,10 +5,18 @@
     min-height: 100vh;
     background-color: #161616;
   }
-  
+  .body{
+    background-color: #b9f8df;
+    /* margin-top: 0 px;
+    margin-bottom: 0 px;
+    margin-left: 0 px;
+    margin-right: 0 px; */
+    padding: 0px;
+    margin: 0 px;
+  }
   .header {
     width: 100%;
-    
+    /* background-color: #b9f8df; */
   }
   
   .topHeader {
@@ -37,10 +45,10 @@
   
   .menu {
     display: flex;
-    align-items: center;
+    align-items:right;
     justify-content: space-between;
-    color: #cccccc;
-    width: 44.7rem;
+    color: #41c6b2;
+    /* width: 44.7rem; */
     letter-spacing: 0.01rem;
   }
   
@@ -226,22 +234,32 @@
     letter-spacing: 0.01rem;
   }
   .mytable {
+    /* display: flex; */
     width: 100%;
-    border-collapse: collapse;
+    /* border-collapse: collapse; */
+    padding-top: 50px;
+    border-collapse: 'separate';
+    border-spacing: '0px 4px';
   }
   
   .mytable th {
-    background-color: #f2f2f2;
-    padding: 50px;
+    /* background-color: #f2f2f2; */
+    padding: 20px;
     font-weight: normal;
-    padding-right: 100px;
+    padding-right: 10px;
+    text-align: center;
+    
   }
   
   .mytable td {
-    background-color: #f2f2f2;
+    /* display: flex; */
+    justify-content: center;
+    /* background-color: #f2f2f2; */
     padding: 20px;
+    padding-right: 20 px;
     font-weight: normal;
-    padding-left: 280px;
+    text-align: center;
+    /* padding-bottom: 20 px; */
   }
   
   .tableheader {
@@ -251,3 +269,30 @@
   .tablecolumn {
     padding-right: 50px;
   }
+  .line::after {
+    /* display:inline-flex; */
+    content: "";
+    /* display: flex; */
+    border-top: 1px solid rgb(61, 215, 190);
+    margin-top: 10px;
+    align-items: center;
+  }
+  .transmytable {
+    /* display: flex; */
+    width: 100%;
+    /* border-collapse: collapse; */
+    padding-top: 10px;
+    border-collapse: 'separate';
+    border-spacing: '0px 4px';
+  }
+  .transmytable td {
+    /* display: flex; */
+    justify-content: center;
+    /* background-color: #f2f2f2; */
+    /* padding: 1px; */
+    padding-right: 20 px;
+    font-weight: normal;
+    /* text-align: center; */
+    /* padding-bottom: 20 px; */
+  }
+  

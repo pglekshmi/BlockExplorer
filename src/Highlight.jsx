@@ -30,7 +30,7 @@ function Highlight(){
     
     
     return (
-        <div>
+        <div className={styles.header} >
     
             <div >
         
