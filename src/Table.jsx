@@ -89,7 +89,8 @@ function Table() {
                 {/* <Link to="blockdetails" state={parameter}>click</Link> */}
                       {/* <Link to={{ pathname: "blockdetails", state: {parameter} }}>{blk}
                      </Link> */}
-                     <Link to="blockdetails" state={blk}>{blk}</Link>
+                     {/* <Link to="blockdetails/" state={blk}>{blk}</Link> */}
+                     <Link to={'/blockdetails/'+ blk} >{blk}</Link>
                      </div> 
                       </td></tr>)
                       

@@ -1,12 +1,14 @@
 
 import {useEffect,useState} from "react";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation,useNavigate,useParams } from "react-router-dom";
 import styles from "./style/Home.module.css";
 
 function Transdetails(props){
+  const navigate = useNavigate();
+  const { tlk }  = useParams();
     const [isMounted, setIsMounted] = useState(false);
-    const location = useLocation();
-    const propsData1 = location.state;
+    // const location = useLocation();
+    // const propsData1 = location.state;
     const [transData,setTransData] = useState([]);
     
     
@@ -14,13 +16,15 @@ function Transdetails(props){
 
     
     async function TransD(){
+      console.log("WHAT")
+      console.log("TLK",tlk);
       
         const data =  {
             
                 "jsonrpc": "2.0",
                 "method": "eth_getTransactionByHash",
                 "params": [
-                    propsData1
+                    tlk
                 ],
                 "id": 1
             
@@ -40,8 +44,15 @@ function Transdetails(props){
         
     }
     if(isMounted){
+
       console.log("hai");
-    console.log(transData.result);
+    console.log("TransResult",transData.result);
+    if(transData.result === null)
+    {
+      console.log("Dont go")
+      navigate("/errorpage2", { state: tlk  });
+    }
+    else{
      const hexToDecimal = hex => parseInt(hex, 16);
      const blockNum = hexToDecimal(transData.result.blockNumber);
      console.log(blockNum);
@@ -51,7 +62,7 @@ function Transdetails(props){
       const maxfee = hexToDecimal(transData.result.maxFeePerGas);
       const maxpriority = hexToDecimal(transData.result.maxPriorityFeePerGas);
       const value = hexToDecimal(transData.result.value);
-      const input = hexToDecimal(transData.result.input);
+      // const input = hexToDecimal(transData.result.input);
     return(
         <div> <h2>Transaction Details</h2>
           <table className={styles.transmytable}>
@@ -69,12 +80,13 @@ function Transdetails(props){
             <tr><td><p>r: </p></td><td>{transData.result.r}</td></tr>
             <tr><td><p>s:</p></td><td>{transData.result.s}</td></tr> 
             <tr><td><p>Input:</p></td><td>
-            <textarea id="json-text-area" rows="4" cols="50" name="input">{input}</textarea>
+            <textarea id="json-text-area" rows="4" cols="50" name="input">{transData.result.input}</textarea>
             </td></tr></table>
         </div>
     );
     
 
+}
 }
 }
 export default Transdetails;

@@ -51,7 +51,7 @@ function Transactions(props){
                <tr>
                   <td>
                      <div key={tlk}>
-               <Link to="/transdetails" state={tlk}>{tlk}</Link></div>
+               <Link to={'/transdetails/'+tlk}>{tlk}</Link></div>
                </td></tr>
             )
                })}

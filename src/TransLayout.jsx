@@ -1,24 +1,30 @@
 import { useEffect, useState } from "react";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation,useParams } from "react-router-dom";
 import styles from "./style/Home.module.css";
 import { useNavigate  } from "react-router-dom";
-function TransLayout(props) {
+function TransLayout() {
+  
   const navigate = useNavigate();
+  const { blk }  = useParams();
+  
   // console.log("hi")
   // console.log(props);
   // const [isMounted, setIsMounted] = useState(false);
-  const location = useLocation();
+  // const location = useLocation();
   // const { block } = location.state;
   // console.log("hai")
   // console.log(block);
-  const blk = location.state;
+  // const blk = location.state;
   // console.log("BLoccccck",blk);
+  
   var lblk;
   const [isMounted,setIsMounted] =useState(false);
   const [blockdetails, setblockdetails] = useState([]);
   const [transCount, settransCount] = useState();
   useEffect(() => { BlockD() }, []);
   async function BlockD() {
+    const blk1 = Number(blk);
+    console.log("BLK",blk1)
     const data1 = {
       "jsonrpc": "2.0",
       "method": "eth_blockNumber",
@@ -36,20 +42,20 @@ function TransLayout(props) {
 
      lblk = await res.result;
      console.log("Largest Hex",lblk);
-    //  const hexToDecimal = hex => parseInt(hex, 16);
+     const hexToDecimal = hex => parseInt(hex, 16);
     const dec1 = hexToDecimal(lblk);
     // console.log("Largest",dec1);
-    if(blk>dec1){
+    if(blk1>dec1){
       console.log("hiiii")
       navigate("/errorpage", { state: blk  });
     }
     else{
    
-    const data = {
+    const data = await {
       "jsonrpc": "2.0",
       "method": "eth_getBlockByNumber",
       "params": [
-        blk,
+        blk1,
         true
       ],
       "id": 1
@@ -59,7 +65,7 @@ function TransLayout(props) {
       "jsonrpc": "2.0",
       "method": "eth_getBlockTransactionCountByNumber",
       "params": [
-        blk
+        blk1
       ],
       "id": 1
     }
@@ -110,13 +116,18 @@ function TransLayout(props) {
   const totDiffi = hexToDecimal(blockdetails.totalDifficulty);
   // // const length = blockdetails.transactions.length;
   // // console.log(tot);
+  if(typeof blk1 === 'string'){
+    
+    return(<div><p>Loading</p></div>)
+  }
+  else{
 
-
+    console.log(typeof blk1);
   return (
     <div>
       <h2>Block Details</h2>
       <table className={styles.transmytable}>
-      <tr><td><p>Block Height:</p></td><td>{blk}</td></tr>
+      {/* <tr><td><p>Block Height:</p></td><td>{blk}</td></tr> */}
       <tr><td><p>Block Hash:</p></td><td>{blockdetails.hash}</td></tr>
       <tr><td><p>Block timestamp:</p></td>{timestamp}<td></td></tr>
       <tr><td><p>Transactions:</p></td><td><Link to="/Transactions" state={blockdetails}>{length} </Link>transactions</td></tr>
@@ -137,6 +148,7 @@ function TransLayout(props) {
 
     </div>
    )
+  }
 
 }
 export default TransLayout;
