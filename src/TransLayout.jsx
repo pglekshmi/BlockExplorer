@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, Outlet, useLocation,useParams } from "react-router-dom";
 import styles from "./style/Home.module.css";
 import { useNavigate  } from "react-router-dom";
+import { ContractUnknownEventPayload } from "ethers";
 function TransLayout() {
   
   const navigate = useNavigate();
@@ -99,6 +100,7 @@ function TransLayout() {
   if (isMounted) {
     console.log(blockdetails.transactions[0]);
     const transac = blockdetails.transactions[0];
+    
   }
 
   // // const bata = blockdetails.transactions[0];
@@ -108,6 +110,27 @@ function TransLayout() {
   console.log(transCount);
   const hexToDecimal = hex => parseInt(hex, 16);
   const timestamp = hexToDecimal(blockdetails.timestamp);
+  console.log(timestamp);
+  const currentTimestamp = Math.floor(Date.now() / 1000); 
+  console.log("Current",currentTimestamp);
+  var timeDifference = Math.floor(currentTimestamp - timestamp);
+  console.log("Time",timeDifference)
+  if(timeDifference<60){
+    timeDifference = timeDifference + "sec"
+  console.log("Time difference in seconds:", timeDifference);}
+  else if(timeDifference>=60 && timeDifference<3600){
+    
+  console.log("Time difference in minutes:", Math.floor(timeDifference / 60));
+  timeDifference = Math.floor(timeDifference / 60)+" "+"minutes ago";}
+  else if(timeDifference>=3600 && timeDifference<86400){
+    timeDifference = Math.floor(timeDifference / 3600)+" "+"hours ago";
+console.log("Time difference in hours:", Math.floor(timeDifference / 3600));}
+else{
+  
+  timeDifference = Math.floor(timeDifference / 86400)+" "+"days ago";
+console.log("Time difference in days:", Math.floor(timeDifference / 86400));}
+  // const hexToDecimal = hex => parseInt(hex, 16);
+  
   const size = hexToDecimal(blockdetails.size);
   const length = hexToDecimal(transCount);
   const gas = hexToDecimal(blockdetails.gasUsed);
@@ -129,7 +152,7 @@ function TransLayout() {
       <table className={styles.transmytable}>
       {/* <tr><td><p>Block Height:</p></td><td>{blk}</td></tr> */}
       <tr><td><p>Block Hash:</p></td><td>{blockdetails.hash}</td></tr>
-      <tr><td><p>Block timestamp:</p></td>{timestamp}<td></td></tr>
+      <tr><td><p>Block timestamp:</p></td><td>{timeDifference}</td></tr>
       <tr><td><p>Transactions:</p></td><td><Link to="/Transactions" state={blockdetails}>{length} </Link>transactions</td></tr>
       <tr><td><p>Size:</p></td><td>{size}bytes</td></tr> 
       <tr><td><p>Difficulty:</p></td><td>{diffi}</td></tr> 
