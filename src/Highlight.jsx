@@ -17,14 +17,14 @@ function Highlight(){
         if(searchInput.length==64 || searchInput.length == 66)
         {
             console.log("hai",searchInput);
-            navigate("/transdetails", { state: searchInput  });}
+            navigate('/transdetails/'+searchInput, { state: searchInput  });}
         else{
             let hexStr =  Number(searchInput).toString(16);
                 hexStr= "0x"+ hexStr
              console.log(hexStr);
             
             console.log("hello",Number(searchInput))
-            navigate("/blockdetails", { state: hexStr  });
+            navigate("/blockdetails/"+hexStr, { state: hexStr  });
         }
     }
     
