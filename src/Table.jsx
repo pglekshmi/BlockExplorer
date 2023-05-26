@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 // import { Link } from "react-router-dom";
+import styles from "./style/Home.module.css";
 
 
 // import {ethers} from "ethers";
@@ -58,21 +59,29 @@ function Table() {
 
       <div className="App">
        
-         <table id="blocks" width="100%">
+         <table id="blocks" className={styles.mytable}>
+          <thead>
            
-             <tr >Latest Blocks</tr>
-             <tr>
-              <th>Number</th>
-              <th>Timestamp</th>
+             <tr >
+             <th colSpan="2" >Latest Blocks</th>
              </tr>
+             <tr className={styles.line}></tr>
+             
+             </thead>
+             <tbody>
              <tr>
-               <td>
+              <th >Block</th>
+              <th >Timestamp</th>
+             </tr>
+             
+              {  blocksJSX.map((blk) => {
                
-                
-              { blocksJSX.length > 0 && blocksJSX.map((blk) => {
-                console.log(parameter);
+                console.log("hi");
                
                 return(
+                  <tr>
+               
+                  <td>
 
                  
                  <div key={blk}> 
@@ -80,13 +89,16 @@ function Table() {
                 {/* <Link to="blockdetails" state={parameter}>click</Link> */}
                       {/* <Link to={{ pathname: "blockdetails", state: {parameter} }}>{blk}
                      </Link> */}
-                     <Link to="blockdetails" state={blk}>{blk}</Link>
+                     {/* <Link to="blockdetails/" state={blk}>{blk}</Link> */}
+                     <Link to={'/blockdetails/'+ blk} >{blk}</Link>
                      </div> 
-                      )
+                      </td></tr>)
+                      
               })} 
-         </td>
-            </tr>
+         
+         
           
+            </tbody>
         </table>
       </div>
     )
